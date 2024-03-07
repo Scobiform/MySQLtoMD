@@ -27,9 +27,11 @@ try:
 
     for (id, title, body, slug, created_at) in cursor:
         filename = f"{output_dir}/{slug}.md"
-        # Removing colons from the strings
+
+        # Clean strings
         slug = remove_colons(slug)
         title = remove_colons(title)
+
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(f"---\ntitle: {title}\ndate: {created_at}\ndescription: {title}\ntag: \nauthor: scobiform\n---\n{body}")
 

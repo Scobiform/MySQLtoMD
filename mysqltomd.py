@@ -10,9 +10,9 @@ config = {
     'raise_on_warnings': True
 }
 
-# Remove colons using regex
-def remove_colons(text):
-    return re.sub(r":", "", text)
+# Remove colons and hashes using regex
+def removeFromString(text):
+    return re.sub(r"[:#]", "", text)
 
 try:
     # Connect to MySQL
@@ -32,8 +32,8 @@ try:
         filename = f"{output_dir}/{slug}.md"
 
         # Clean strings
-        slug = remove_colons(slug)
-        title = remove_colons(title)
+        slug = removeFromString(slug)
+        title = removeFromString(title)
 
         # Write md files
         with open(filename, 'w', encoding='utf-8') as f:

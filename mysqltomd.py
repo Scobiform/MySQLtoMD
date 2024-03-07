@@ -15,9 +15,11 @@ def remove_colons(text):
     return re.sub(r":", "", text)
 
 try:
+    # Connect to MySQL
     cnx = mysql.connector.connect(**config)
     cursor = cnx.cursor()
 
+    # Query posts
     query = "SELECT id, title, body, slug, created_at FROM posts"
     cursor.execute(query)
 
@@ -25,6 +27,7 @@ try:
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
+    # Loop through posts
     for (id, title, body, slug, created_at) in cursor:
         filename = f"{output_dir}/{slug}.md"
 
@@ -32,6 +35,7 @@ try:
         slug = remove_colons(slug)
         title = remove_colons(title)
 
+        # Write md files
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(f"---\ntitle: {title}\ndate: {created_at}\ndescription: {title}\ntag: \nauthor: scobiform\n---\n{body}")
 

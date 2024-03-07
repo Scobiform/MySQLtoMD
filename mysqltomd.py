@@ -10,7 +10,7 @@ config = {
     'raise_on_warnings': True
 }
 
-# Function to remove colons using regex
+# Remove colons using regex
 def remove_colons(text):
     return re.sub(r":", "", text)
 

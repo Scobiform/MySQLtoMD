@@ -12,7 +12,11 @@ config = {
 
 # Remove colons and hashes using regex
 def removeFromString(text):
-    return re.sub(r"[:#]", "", text)
+    text = re.sub(r"[:#]", "", text)
+    # Cut down the string
+    MAX_PATH_LENGTH = 210
+    max_length = MAX_PATH_LENGTH - len(output_dir) - len(".md") - 1 
+    return text[:max_length]
 
 try:
     # Connect to MySQL
@@ -29,11 +33,11 @@ try:
 
     # Loop through posts
     for (id, title, body, slug, created_at) in cursor:
-        filename = f"{output_dir}/{slug}.md"
-
         # Clean strings
         slug = removeFromString(slug)
         title = removeFromString(title)
+
+        filename = f"{output_dir}/{slug}.md"
 
         # Write md files
         with open(filename, 'w', encoding='utf-8') as f:

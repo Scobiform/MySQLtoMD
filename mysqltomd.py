@@ -11,11 +11,10 @@ config = {
 }
 
 # Remove colons and hashes using regex
-def removeFromString(text):
-    text = re.sub(r"[:#]", "", text)
+def removeFromString(text, max_length=210):
+    text = re.sub(r'[:#""]', '', text)
     # Cut down the string
-    MAX_PATH_LENGTH = 210
-    max_length = MAX_PATH_LENGTH - len(output_dir) - len(".md") - 1 
+    max_length = max_length - len(output_dir) - len(".md") - 1 
     return text[:max_length]
 
 try:
@@ -35,7 +34,7 @@ try:
     for (id, title, body, slug, created_at) in cursor:
         # Clean strings
         slug = removeFromString(slug)
-        title = removeFromString(title)
+        title = removeFromString(title, 666)
 
         filename = f"{output_dir}/{slug}.md"
 

@@ -10,7 +10,7 @@ config = {
     'raise_on_warnings': True
 }
 
-# Remove colons and hashes using regex
+# Remove unwanted characters using regex
 def removeFromString(text, max_length=210):
     text = re.sub(r'[:#""]', '', text)
     # Cut down the string
@@ -34,7 +34,7 @@ try:
     for (id, title, body, slug, created_at) in cursor:
         # Clean strings
         slug = removeFromString(slug)
-        title = removeFromString(title, 666)
+        title = removeFromString(title, 777)
 
         filename = f"{output_dir}/{slug}.md"
 

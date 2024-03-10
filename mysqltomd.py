@@ -38,9 +38,11 @@ try:
 
         filename = f"{output_dir}/{slug}.md"
 
+        created_at = created_at.strftime("%Y-%m-%d")
+
         # Write md files
         with open(filename, 'w', encoding='utf-8') as f:
-            f.write(f"---\ntitle: {title}\ndate: {created_at}\ndescription: {title}\ntag: \nauthor: scobiform\n---\n{body}")
+            f.write(f"---\ntitle: {title}\ndate: '{created_at}'\ndescription: {title}\ntag: \nauthor: scobiform\n---\n{body}")
 
     print(f"Markdown files have been saved to {output_dir}/")
 
